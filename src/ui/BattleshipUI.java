@@ -6,6 +6,7 @@ public class BattleshipUI {
     private final PrintStream outStream;
     private final BufferedReader inBufferedReader;
     private final String playerName;
+    private final String lol = "LOL";
 
     public BattleshipUI(String name, PrintStream out, InputStream in) {
         this.playerName = name;
