@@ -22,7 +22,7 @@ public class BattleshipUI {
             System.exit(1);
         }
 
-        System.out.println("Welcome " + args[0]);
+        System.out.println("\nWelcome " + args[0]);
         System.out.println("Let's play a game");
 
         BattleshipUI cmd = new BattleshipUI(args[0], System.out, System.in);
@@ -52,6 +52,7 @@ public class BattleshipUI {
                     case Commands.CONNECT -> this.connectToHost(params);
                     case Commands.HOST -> this.hostGame();
                     case Commands.SHOOT -> this.shootCoordinates(params);
+                    case Commands.PRINT -> this.printBoard();
                     case Commands.EXIT -> {
                         active = false;
                         this.terminate();
@@ -97,14 +98,18 @@ public class BattleshipUI {
         // TODO: Update board & give feedback
     }
 
+    private void printBoard() {
+        printError("No board available, yet.");
+    }
+
     private void terminate() {
         try {
             // perform necessary engine shutdowns
             this.inBufferedReader.close();
             this.outStream.close();
         } catch (IOException e) {
-            System.err.println("Caught an exception");
-            // swallow exception
+            // just for debugging
+            printError("Caught an exception");
         }
     }
 
@@ -115,19 +120,19 @@ public class BattleshipUI {
         instructions.append("VALID COMMANDS:");
         instructions.append("\n");
         instructions.append(Commands.CONNECT);
-        instructions.append("--> connect as tcp client");
+        instructions.append(" --> connect to the tcp host by IP");
         instructions.append("\n");
         instructions.append(Commands.HOST);
-        instructions.append("--> open port become tcp server");
+        instructions.append(" --> host a new game session via TCP");
         instructions.append("\n");
         instructions.append(Commands.PRINT);
-        instructions.append("--> print board");
+        instructions.append(" --> print board");
         instructions.append("\n");
         instructions.append(Commands.SHOOT);
-        instructions.append("--> shoot a coordinate");
+        instructions.append(" --> shoot a coordinate (e.g. a3)");
         instructions.append("\n");
         instructions.append(Commands.EXIT);
-        instructions.append("--> exit");
+        instructions.append(" --> exit the game");
         this.outStream.println(instructions);
     }
 

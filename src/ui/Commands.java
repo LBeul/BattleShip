@@ -4,6 +4,7 @@ public final class Commands {
     static final String SPLASH_SCREEN = """
             WELCOME TO...\s
             \s
+            \u001b[32m
             ██████╗  █████╗ ████████╗████████╗██╗     ███████╗███████╗██╗  ██╗██╗██████╗\s
             ██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║     ██╔════╝██╔════╝██║  ██║██║██╔══██╗
             ██████╔╝███████║   ██║      ██║   ██║     █████╗  ███████╗███████║██║██████╔╝
@@ -11,7 +12,7 @@ public final class Commands {
             ██████╔╝██║  ██║   ██║      ██║   ███████╗███████╗███████║██║  ██║██║██║    \s
             ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝    \s
             \s
-            VERSION 0.1 \s""";
+            VERSION 0.1 \u001b[0m\s""";
     static final String PRINT = "print";
     static final String EXIT = "exit";
     static final String CONNECT = "connect";
