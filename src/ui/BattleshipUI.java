@@ -25,27 +25,28 @@ public class BattleshipUI {
         System.out.println("Welcome " + args[0]);
         System.out.println("Let's play a game");
 
-        BattleshipUI gameUI = new BattleshipUI(args[0], System.out, System.in);
-        gameUI.printUsage();
-        gameUI.startREPL();
+        BattleshipUI cmd = new BattleshipUI(args[0], System.out, System.in);
+        cmd.printUsage();
+        cmd.startREPL();
     }
 
     public void startREPL() {
         boolean active = true;
-        this.outStream.println("Hi " + playerName + "! Please enter a command:");
+        this.outStream.println("Hi " + playerName + "! Please enter a command:\n");
         while (active) {
             try {
                 String userInput = inBufferedReader.readLine();
-
-                if (userInput == null) break;
-
                 userInput = userInput.trim();
-                if (!userInput.contains(" ")) continue;
-                String[] commands = userInput.split(" ");
-                if (commands.length > 2) continue;
-
-                String action = commands[0];
-                String params = commands[1];
+                String action;
+                String params = null;
+                if (userInput.contains(" ")) {
+                    String[] commands = userInput.split(" ");
+                    if (commands.length > 2) continue;
+                    action = commands[0];
+                    params = commands[1];
+                } else {
+                    action = userInput;
+                }
 
                 switch (action) {
                     case Commands.CONNECT -> this.connectToHost(params);
@@ -68,9 +69,11 @@ public class BattleshipUI {
         }
     }
 
-    private void connectToHost(String params){
-        String hostName = params;
-        this.outStream.println("Connecting to " + hostName + " ...");
+    private void connectToHost(String hostIP){
+        if(hostIP == null) {
+            this.outStream.println("Please provide the host ip!");
+        }
+        this.outStream.println("Connecting to " + hostIP + " ...");
         // TODO: Setup network connection
     }
 
@@ -83,8 +86,12 @@ public class BattleshipUI {
         this.outStream.println(sb);
     }
 
-    private void shootCoordinates(String params) {
-        String coords = params;
+    private void shootCoordinates(String coords) {
+        if(coords == null){
+            this.outStream.println("Please provide coordinates!");
+            return;
+        }
+
         // TODO: Check board
         this.outStream.println("Shooting at coordinate " + coords);
         // TODO: Update board & give feedback
@@ -100,7 +107,26 @@ public class BattleshipUI {
         }
     }
 
-    private void printUsage() {
-        this.outStream.println("Usage....");
+    public void printUsage() {
+        StringBuilder instructions = new StringBuilder();
+        instructions.append("\n");
+        instructions.append("\n");
+        instructions.append("VALID COMMANDS:");
+        instructions.append("\n");
+        instructions.append(Commands.CONNECT);
+        instructions.append("--> connect as tcp client");
+        instructions.append("\n");
+        instructions.append(Commands.HOST);
+        instructions.append("--> open port become tcp server");
+        instructions.append("\n");
+        instructions.append(Commands.PRINT);
+        instructions.append("--> print board");
+        instructions.append("\n");
+        instructions.append(Commands.SHOOT);
+        instructions.append("--> shoot a coordinate");
+        instructions.append("\n");
+        instructions.append(Commands.EXIT);
+        instructions.append("--> exit");
+        this.outStream.println(instructions);
     }
 }
