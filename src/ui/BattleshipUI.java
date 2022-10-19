@@ -69,9 +69,9 @@ public class BattleshipUI {
         }
     }
 
-    private void connectToHost(String hostIP){
-        if(hostIP == null) {
-            this.outStream.println("Please provide the host ip!");
+    private void connectToHost(String hostIP) {
+        if (hostIP == null) {
+            printError("Please provide the host ip!");
         }
         this.outStream.println("Connecting to " + hostIP + " ...");
         // TODO: Setup network connection
@@ -87,8 +87,8 @@ public class BattleshipUI {
     }
 
     private void shootCoordinates(String coords) {
-        if(coords == null){
-            this.outStream.println("Please provide coordinates!");
+        if (coords == null) {
+            printError("Please provide coordinates!");
             return;
         }
 
@@ -103,6 +103,7 @@ public class BattleshipUI {
             this.inBufferedReader.close();
             this.outStream.close();
         } catch (IOException e) {
+            System.err.println("Caught an exception");
             // swallow exception
         }
     }
@@ -128,5 +129,11 @@ public class BattleshipUI {
         instructions.append(Commands.EXIT);
         instructions.append("--> exit");
         this.outStream.println(instructions);
+    }
+
+    public void printError(String errorMessage) {
+        String RED = "\u001b[31m";
+        String RESET = "\u001b[0m";
+        this.outStream.println(RED + errorMessage + RESET);
     }
 }
