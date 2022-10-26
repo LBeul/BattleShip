@@ -1,6 +1,6 @@
 package game;
 
-import utils.IntPair;
+import ui.Coordinates;
 
 public interface GameEngine {
 
@@ -15,7 +15,13 @@ public interface GameEngine {
      * @param coordinates the matrix coordinates to shoot at
      * @throws ShotNotValidException in case the coordinates were already shot at
      */
-    public void shoot(IntPair coordinates) throws ShotNotValidException;
+    public void shoot(Coordinates coordinates) throws ShotNotValidException;
+
+    /**
+     * Get current player scores
+     * @return scores as String
+     */
+    public String getCurrentScores();
 }
 
 
