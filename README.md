@@ -13,6 +13,6 @@
     - Show pending status
     - Give feedback when connection successful (or timeout)
 3. Game Play
-    - Show the battleship board
+    - Show the battleship game
     - Request shooting coordinates from each player in turn
     - update both boards when shots were fired
