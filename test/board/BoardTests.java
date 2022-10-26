@@ -16,10 +16,11 @@ public class BoardTests {
         assertThrows(AlreadyShotException.class, shootAtNull);
     }
 
-    @Test
-    public void marksShotCoordinateAsShot() throws AlreadyShotException {
+    @ParameterizedTest
+    @ValueSource(strings = {"a1", "B3", "c5", "f7"})
+    public void marksShotCoordinateAsShot(String coords) throws AlreadyShotException {
         BattleShipBoard board = new BattleShipBoardImpl() {};
-        board.shoot("A1");
+        assertEquals("Shot at " + coords, board.shoot(coords));
         assertEquals(board.getBoard()[0][0], 'x');
     }
 }

@@ -7,8 +7,8 @@ public class BattleShipBoardImpl implements BattleShipBoard {
     }
 
     @Override
-    public void shoot(String coords) throws AlreadyShotException {
-
+    public String shoot(String coords) throws AlreadyShotException {
+        return "";
     }
 
     @Override

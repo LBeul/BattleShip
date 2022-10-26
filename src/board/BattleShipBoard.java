@@ -15,8 +15,9 @@ public interface BattleShipBoard {
      * Shoot given coordinates on the board
      * @param coords the coordinates to shoot at
      * @throws AlreadyShotException in case the coordinates were already shot at
+     * @return statement to print to the user
      */
-    public void shoot(String coords) throws AlreadyShotException;
+    public String shoot(String coords) throws AlreadyShotException;
 
     /**
      *
