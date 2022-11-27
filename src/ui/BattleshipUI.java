@@ -98,6 +98,15 @@ public class BattleshipUI {
         // TODO: Update board & give feedback
     }
 
+    /**
+     * Get current player scores
+     *
+     * @return scores as String
+     */
+    public String getCurrentScores() {
+        return null;
+    }
+
     private void printBoard() {
         printError("No board available, yet.");
     }

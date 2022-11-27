@@ -17,11 +17,6 @@ public interface GameEngine {
      */
     public void shoot(Coordinates coordinates) throws ShotNotValidException;
 
-    /**
-     * Get current player scores
-     * @return scores as String
-     */
-    public String getCurrentScores();
 }
 
 
