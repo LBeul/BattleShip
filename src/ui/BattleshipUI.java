@@ -102,6 +102,10 @@ public class BattleshipUI {
         printError("No board available, yet.");
     }
 
+    private void printBoard2() {
+        printError("No board2 available, yet.");
+    }
+
     private void terminate() {
         try {
             // perform necessary engine shutdowns
