@@ -21,6 +21,10 @@ public class BoardTests {
     }
 
     @Test
+    public void shootWhereAlreadyShotTest() {
+    }
+
+    @Test
     public void updateBoardTest() {
     }
 }
