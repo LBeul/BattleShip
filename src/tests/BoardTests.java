@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 public class BoardTests {
+    // TODO: BoardTests implementieren
 
     @Test
     public void allShipsPlacedTest() {
