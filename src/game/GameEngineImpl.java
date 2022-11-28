@@ -20,6 +20,10 @@ public class GameEngineImpl implements GameEngine{
         return new char[0][];
     }
 
+    public char[][] getBoard(Coordinates coordinates) {
+        return new char[0][];
+    }
+
     @Override
     public void shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException {
         /**get coordinates and shoot
