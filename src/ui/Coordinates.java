@@ -4,7 +4,7 @@ public class Coordinates {
     private final int x;
     private final int y;
 
-    Coordinates(String stringCoords) {
+    public Coordinates(String stringCoords) {
         this.x = Character.getNumericValue(stringCoords.charAt(0)) - 10;
         this.y = Integer.parseInt(stringCoords.substring(1)) - 1;
     }

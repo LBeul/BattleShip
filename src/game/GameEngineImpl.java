@@ -27,6 +27,7 @@ public class GameEngineImpl implements GameEngine{
         if shot misses, other player goes
         if Exception gets thrown, give new coordinates
         if (coordinates == shipsCoordinates) {
+            board(coordinates) = Symbol.KREUZ;
             shoot again;
         }
          */

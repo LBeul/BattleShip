@@ -1,7 +1,10 @@
 import game.CoordinatesNotOnBoardException;
+import game.GameEngineImpl;
 import game.ShotNotValidException;
+import game.Symbol;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
+import ui.Coordinates;
 
 
 public class BoardTests {
@@ -18,11 +21,16 @@ public class BoardTests {
         //tests getBoard()
     }
     @Test
-    public void shootingAtCoordinateTest() {
+    public void shootingAtCoordinateTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
         //shoot at edges
+        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
+        Coordinates a = new Coordinates("b5");
+        battleship.shoot(a);
+        Assert.assertEquals(Symbol.KREUZ, battleship.getBoard());
+        //battleship.getBoard() at those coordinates, need to be implemented
     }
 
-    @Test//(expected=ShotNotValidException.class)
+    @Test//(expected=CoordinatesNotOnBoardException.class)
     public void shootingAtInexistentCoordinateTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
         //shoot outside the board
     }
