@@ -17,6 +17,10 @@ public interface GameEngine {
      */
     public void shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException;
 
+    /**
+     * deploy ships at random coordinates on the board
+     */
+    public void deployShips();
 }
 
 

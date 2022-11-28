@@ -22,12 +22,21 @@ public class GameEngineImpl implements GameEngine{
 
     @Override
     public void shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException {
-        //get coordinates and shoot
-        //if shot hits, get another go
-        //if shot misses, other player goes
-        //if Exception gets thrown, give new coordinates
+        /**get coordinates and shoot
+        if shot hits, get another go
+        if shot misses, other player goes
+        if Exception gets thrown, give new coordinates
+        if (coordinates == shipsCoordinates) {
+            shoot again;
+        }
+         */
     }
 
-
+    public void deployShips() {
+        // TODO: Deploy ships at random coordinates
+        // deploy ships randomly on the board
+        // save the coordinates shipsCoordinates
+        // TODO: Update board & give feedback
+    }
 
 }
