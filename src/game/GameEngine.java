@@ -15,7 +15,7 @@ public interface GameEngine {
      * @param coordinates the matrix coordinates to shoot at
      * @throws ShotNotValidException in case the coordinates were already shot at
      */
-    public void shoot(Coordinates coordinates) throws ShotNotValidException;
+    public void shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException;
 
 }
 

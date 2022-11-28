@@ -100,7 +100,7 @@ public class BattleshipUI {
 
     private void deployShips() {
         // TODO: Deploy ships
-        //deploy ships randomly in the board
+        // deploy ships randomly on the board
         this.outStream.println("Ships have been deployed");
         // TODO: Update board & give feedback
     }

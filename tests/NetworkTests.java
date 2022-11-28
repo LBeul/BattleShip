@@ -5,9 +5,11 @@ public class NetworkTests {
 
     @Test
     public void hostConnectedTest() {
+        //check if host is connected
     }
 
     @Test
     public void Player2ConnectedTest() {
+        //check if player2 is connected
     }
 }
