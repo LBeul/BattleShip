@@ -5,7 +5,8 @@ public class BoardTests {
     // TODO: BoardTests implementieren
 
     @Test
-    public void allShipsPlacedTest() {
+    public void shipsDeployedTest() {
+
     }
 
     @Test

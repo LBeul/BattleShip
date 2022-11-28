@@ -98,6 +98,13 @@ public class BattleshipUI {
         // TODO: Update board & give feedback
     }
 
+    private void deployShips() {
+        // TODO: Deploy ships
+        //deploy ships randomly in the board
+        this.outStream.println("Ships have been deployed");
+        // TODO: Update board & give feedback
+    }
+
     /**
      * Get current player scores
      *
