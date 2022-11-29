@@ -2,6 +2,11 @@ package game;
 
 import ui.Coordinates;
 
+/**
+ * GameEngine API
+ * @author Louis Beul
+ * @author Koço Dhami
+ */
 public interface GameEngine {
 
     /**
@@ -15,19 +20,10 @@ public interface GameEngine {
      * @param coordinates the matrix coordinates to shoot at
      * @throws ShotNotValidException in case the coordinates were already shot at
      */
-    public void shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException;
+    public boolean shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException;
 
     /**
      * deploy ships at random coordinates on the board
      */
     public void deployShips();
 }
-
-
-/*
-    static final String PRINT = "print";
-    static final String EXIT = "exit";
-    static final String CONNECT = "connect";
-    static final String HOST = "host";
-    static final String SHOOT = "shoot";
- */
