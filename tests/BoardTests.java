@@ -51,7 +51,7 @@ public class BoardTests {
 
     @Test
     public void shootsValidAndMissesShipTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
-        Coordinates a = new Coordinates("b15");
+        Coordinates a = new Coordinates("b5");
         gameEngine.shoot(a);
         assertEquals(Symbol.KREIS, gameEngine.getBoard()[0][0]);
     }
