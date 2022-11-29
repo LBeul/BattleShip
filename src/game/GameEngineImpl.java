@@ -16,12 +16,12 @@ public class GameEngineImpl implements GameEngine{
     }
 
     @Override
-    public char[][] getBoard() {
-        return new char[0][];
+    public Symbol[][] getBoard() {
+        return new Symbol[10][10];
     }
 
-    public char[][] getBoard(Coordinates coordinates) {
-        return new char[0][];
+    public Symbol[][] getBoard(Coordinates coordinates) {
+        return new Symbol[10][10];
     }
 
     @Override

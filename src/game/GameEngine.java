@@ -8,7 +8,7 @@ public interface GameEngine {
      * Get current state of the game board
      * @return board as 2D array matrix
      */
-    public char[][] getBoard();
+    public Symbol[][] getBoard();
 
     /**
      * Shoot given coordinates on the board

@@ -1,87 +1,100 @@
-import game.CoordinatesNotOnBoardException;
-import game.GameEngineImpl;
-import game.ShotNotValidException;
-import game.Symbol;
+import game.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testng.Assert;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import ui.Coordinates;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.util.List;
 
 
 public class BoardTests {
 
-    // TODO: BoardTests implementieren
+    private GameEngine gameEngine;
 
-    @Test
-    public void shipsDeployedTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
-        //tests getBoard()
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        char[][] board = battleship.getBoard();
-        battleship.deployShips();
-        Assert.assertEquals(board,battleship.getBoard());
-        fail();
-        //test passes weil deployShips() ist noch nicht implementiert, deswegen ist fail() addiert
+    @BeforeEach
+    public void setup() {
+        gameEngine = new GameEngineImpl("player1", "player2");
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("nullishGameEngineParams")
+    public void constructorThrowsExceptionIfAtLeastOneParamIsNull(String p1, String p2) {
+        Executable invalidConstructorCall = () -> gameEngine = new GameEngineImpl(p1, p2);
+        assertThrows(
+                IllegalArgumentException.class,
+                invalidConstructorCall,
+                "Constructor calls with at least one nullish params should throw IllegalArgumentException."
+        );
     }
 
     @Test
-    public void updateBoardTest() {
-        //tests getBoard()
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        char[][] board = battleship.getBoard();
-        battleship.deployShips();
-        Assert.assertEquals(board,battleship.getBoard());
-        fail();
-        //test passes weil deployShips() ist noch nicht implementiert, deswegen ist fail() addiert
+    public void shipsGetDeployedTest() {
+        Symbol[][] board = gameEngine.getBoard();
+        gameEngine.deployShips();
+        assertEquals(board, gameEngine.getBoard());
     }
+
     @Test
-    public void shootingAtCoordinateTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
-        //shoot at edges
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        battleship.deployShips();
+    public void shootsAtValidCoordinateTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
+        gameEngine.deployShips();
         Coordinates a = new Coordinates("a1");
-        battleship.shoot(a);
-        Assert.assertEquals(Symbol.KREUZ, battleship.getBoard(a));
-    }
-
-    @Test//(expected=CoordinatesNotOnBoardException.class)
-    public void shootingAtInexistentCoordinateTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
-        //shoot outside the board
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        Coordinates a = new Coordinates("b15");
-        battleship.shoot(a);
-        Assert.assertEquals(Symbol.KREUZ, battleship.getBoard());
-        //as the coordinate does not exist on board Exception should be thrown
-        //problems with expected=... that's why its commented out
-    }
-    @Test
-    public void shootAndMissTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        Coordinates a = new Coordinates("b15");
-        battleship.shoot(a);
-        Assert.assertEquals(Symbol.KREIS, battleship.getBoard(a));
+        gameEngine.shoot(a);
+        assertEquals(Symbol.KREUZ, gameEngine.getBoard()[0][0]);
     }
 
     @Test
-    public void shootAndHitTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        battleship.deployShips();
+    public void shootsValidAndMissesShipTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
+        Coordinates a = new Coordinates("b15");
+        gameEngine.shoot(a);
+        assertEquals(Symbol.KREIS, gameEngine.getBoard()[0][0]);
+    }
+
+    @Test
+    public void shootsValidAndHitsShipTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
+        gameEngine.deployShips();
         Coordinates a = new Coordinates("a7");
-        battleship.shoot(a);
-        Assert.assertEquals(Symbol.KREUZ, battleship.getBoard(a));
+        gameEngine.shoot(a);
+        assertEquals(Symbol.KREUZ, gameEngine.getBoard()[0][0]);
+    }
+
+    @Test
+    public void shootsOutOfBoardTest() {
+        gameEngine.deployShips();
+        Executable outOfBoardShot = () -> gameEngine.shoot(new Coordinates("x30"));
+        assertThrows(
+                CoordinatesNotOnBoardException.class,
+                outOfBoardShot,
+                "Shots to coordinates outside of the board should throw a CoordinatesNotOnBoardException"
+        );
     }
 
     @Test//(expected=ShotNotValidException.class)
-    public void shootWhereAlreadyShotTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
-        GameEngineImpl battleship = new GameEngineImpl("player1", "player2");
-        battleship.deployShips();
-        Coordinates a = new Coordinates("c4");
-        battleship.shoot(a);
-        battleship.shoot(a);
-        Assert.assertEquals(Symbol.KREUZ, battleship.getBoard(a));
-        //as the coordinate has already been shot once Exception should be thrown
-        //problems with expected=... that's why its commented out
+    public void shootsWhereAlreadyShotTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
+        gameEngine.deployShips();
+        Coordinates c4 = new Coordinates("c4");
+        gameEngine.shoot(c4);
+        Executable repeatedShot = () -> gameEngine.shoot(c4);
+        assertThrows(
+                ShotNotValidException.class,
+                repeatedShot,
+                "Repeated shot to same location should throw ShotNotValidException"
+        );
 
+    }
+
+    public static List<Arguments> nullishGameEngineParams() {
+        return List.of(
+                Arguments.of("Player1", null),
+                Arguments.of(null, "Player2"),
+                Arguments.of(null, null)
+        );
     }
 
 
