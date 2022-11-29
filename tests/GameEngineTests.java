@@ -13,7 +13,7 @@ import ui.Coordinates;
 import java.util.List;
 
 
-public class BoardTests {
+public class GameEngineTests {
 
     private GameEngine gameEngine;
 
@@ -75,7 +75,7 @@ public class BoardTests {
         );
     }
 
-    @Test//(expected=ShotNotValidException.class)
+    @Test
     public void shootsWhereAlreadyShotTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
         gameEngine.deployShips();
         Coordinates c4 = new Coordinates("c4");
