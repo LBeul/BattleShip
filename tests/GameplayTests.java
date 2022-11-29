@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class GameplayTests {
     // TODO: GameplayTests implementieren
 
@@ -9,7 +11,7 @@ public class GameplayTests {
      */
     @Test
     public void changesTurnsIfShotMissed() {
-
+        fail();
     }
 
     /**tests if player who hits the ship, gets another shot
@@ -18,6 +20,7 @@ public class GameplayTests {
      */
     @Test
     public void providesExtraTurnIfShotHit() {
+        fail();
     }
 
     /**tests if point is added when ship player destroys ship
@@ -26,13 +29,16 @@ public class GameplayTests {
      */
     @Test
     public void addsPointIfShipDestroyed() {
+        fail();
     }
 
     @Test
     public void getsScore() {
+        fail();
     }
 
     @Test
     public void endsGameAfterWin() {
+        fail();
     }
 }
