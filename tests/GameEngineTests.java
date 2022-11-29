@@ -53,13 +53,13 @@ public class GameEngineTests {
     public void shootsValidAndMissesShipTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
         Coordinates a = new Coordinates("b5");
         gameEngine.shoot(a);
-        assertEquals(Symbol.KREIS, gameEngine.getBoard()[0][0]);
+        assertEquals(Symbol.KREIS, gameEngine.getBoard()[1][4]);
     }
 
     @Test
     public void shootsValidAndHitsShipTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
         gameEngine.deployShips();
-        Coordinates a = new Coordinates("a7");
+        Coordinates a = new Coordinates("a1");
         gameEngine.shoot(a);
         assertEquals(Symbol.KREUZ, gameEngine.getBoard()[0][0]);
     }
@@ -97,5 +97,11 @@ public class GameEngineTests {
         );
     }
 
-
+    @Test
+    public void winTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
+        gameEngine.deployShips();
+        Coordinates a = new Coordinates("a1");
+        gameEngine.shoot(a);
+        assertEquals(Symbol.KREUZ, gameEngine.getBoard()[0][0]);
+    }
 }
