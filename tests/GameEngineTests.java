@@ -97,11 +97,5 @@ public class GameEngineTests {
         );
     }
 
-    @Test
-    public void winTest() throws CoordinatesNotOnBoardException, ShotNotValidException {
-        gameEngine.deployShips();
-        Coordinates a = new Coordinates("a1");
-        gameEngine.shoot(a);
-        assertEquals(Symbol.KREUZ, gameEngine.getBoard()[0][0]);
-    }
+
 }

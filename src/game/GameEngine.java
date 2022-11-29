@@ -21,7 +21,6 @@ public interface GameEngine {
      * @throws ShotNotValidException in case the coordinates were already shot at
      */
     public boolean shoot(Coordinates coordinates) throws ShotNotValidException,CoordinatesNotOnBoardException;
-
     /**
      * deploy ships at random coordinates on the board
      */
