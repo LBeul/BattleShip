@@ -24,8 +24,15 @@ public class GameEngineImpl implements GameEngine {
         return false;
     }
 
+    @Override
     public void deployShips() {
         System.out.println("Not implemented, yet.");
     }
+
+    @Override
+    public boolean win() {
+        return false;
+    }
+
 
 }

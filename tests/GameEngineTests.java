@@ -89,6 +89,29 @@ public class GameEngineTests {
 
     }
 
+    @Test
+    public void hostWinTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
+        gameEngine.deployShips();
+        Coordinates c4 = new Coordinates("c4");
+        gameEngine.shoot(c4);
+        //get coordinates from gameEngine.deployShips()
+        //host.shoot() those coordinates
+        //after every ship is shot, check win() method which is yet to be implemented,
+        //inside win method, maybe something like: hostPlayer.getScore()>enemy.getScore()
+        assertEquals(true, gameEngine.win());
+    }
+
+    @Test
+    public void enemyWinTest() throws ShotNotValidException, CoordinatesNotOnBoardException {
+        gameEngine.deployShips();
+        Coordinates c4 = new Coordinates("c4");
+        gameEngine.shoot(c4);
+        //get coordinates from gameEngine.deployShips()
+        //enemy.shoot() those coordinates
+        //after every ship is shot, check win() method which is yet to be implemented,
+        //inside win method, maybe something like: hostPlayer.getScore()<enemy.getScore()
+        assertEquals(true, gameEngine.win());
+    }
     public static List<Arguments> nullishGameEngineParams() {
         return List.of(
                 Arguments.of("Player1", null),

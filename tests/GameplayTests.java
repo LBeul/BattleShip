@@ -32,11 +32,21 @@ public class GameplayTests {
         fail();
     }
 
+    /**tests if score is added/is correct when ship player destroys ships
+     * shoot(coordinates where ship is) and repeat shooting until the whole ship is shot
+     * shoot(coordinates where another ship is) and repeat shooting until the whole ship is shot
+     * getScore
+     */
     @Test
     public void getsScore() {
         fail();
     }
 
+    /**tests if game ends correctly after win
+     * shoot(coordinates where ship is) and repeat shooting until the whole ship is shot
+     * shoot(coordinates where another ship is) and repeat shooting until the whole ship is shot
+     * getScore
+     */
     @Test
     public void endsGameAfterWin() {
         fail();

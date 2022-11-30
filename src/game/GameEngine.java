@@ -25,4 +25,9 @@ public interface GameEngine {
      * deploy ships at random coordinates on the board
      */
     public void deployShips();
+
+    /**
+     * check scores between players and decides winner
+     */
+    public boolean win();
 }
